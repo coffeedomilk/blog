@@ -1,14 +1,17 @@
 <html>
-var inv = new XMLHttpRequest();
+<script>
+var invocation = new XMLHttpRequest();
 var url = 'https://www.wrdtech.com';
-
-function call0therDomain(){
-    if(inv) {
-        inv.open('GET',url,true);
-        inv.onreadystatechange = handler;
-        invocation.send();
-        }
-    }
+   
+function callOtherDomain() {
+  if(invocation) {    
+    invocation.open('GET', url, true);
+    invocation.onreadystatechange = handler;
+    invocation.send(); 
+  }
+}
+callOtherDomain()
+</script>
 <head>
 <title>你看到我了</title>
 </head>
