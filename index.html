@@ -1,17 +1,18 @@
 <html>
- <script>
-    var script = document.createElement('script');
-    script.type = 'text/javascript';
+var querystring = require('querystring');
+var http = require('http');
+var server = http.createServer();
 
-    // 传参一个回调函数名给后端，方便后端返回时执行这个在前端定义的回调函数
-    script.src = 'http://www.domain2.com:8080/login?user=admin&callback=handleCallback';
-    document.head.appendChild(script);
+server.on('request', function(req, res) {
+    var params = qs.parse(req.url.split('?')[1]);
+    var fn = params.callback;
 
-    // 回调执行函数
-    function handleCallback(res) {
-        alert(JSON.stringify(res));
-    }
- </script>
+    // jsonp返回设置
+    res.writeHead(200, { 'Content-Type': 'text/javascript' });
+    res.write(fn + '(' + JSON.stringify(params) + ')');
+
+    res.end();
+});
 <head>
 <title>你看到我了</title>
 </head>
