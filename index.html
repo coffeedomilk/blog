@@ -1,8 +1,10 @@
 <html>
 <script>
 var invocation = new XMLHttpRequest();
-var url = 'https://www.wrdtech.com';
-   
+var url = 'http://bar.other/resources/public-data/';
+   function handler(){
+console.log('foo');
+}
 function callOtherDomain() {
   if(invocation) {    
     invocation.open('GET', url, true);
